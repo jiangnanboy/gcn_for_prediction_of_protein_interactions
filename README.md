@@ -16,12 +16,14 @@
 ## Model
 ### 模型
 模型主要使用图神经网络，如gae、vgae等
-* 1.GCNModelVAE(src/vgae)：图卷积自编码和变分图卷积自编码(config中可配置使用自编码或变分自编码)， [Variational Graph Auto-Encoders](https://arxiv.org/pdf/1611.07308.pdf) 。
+* 1.GCNModelVAE(src/vgae)：图卷积自编码和变分图卷积自编码(config中可配置使用自编码或变分自编码)，利用gae/vgae作为编码器，InnerProductDecoder作解码器。 [Variational Graph Auto-Encoders](https://arxiv.org/pdf/1611.07308.pdf) 。
 
     ![image](https://raw.githubusercontent.com/jiangnanboy/gcn_for_prediction_of_protein_interactions/master/image/vgae.png)
-* 2.GCNModelARGA(src/arga)：对抗正则化图自编码，利用gae/vgae作为生成器；一个三层前馈网络作判别器， [Adversarially Regularized Graph Autoencoder for Graph Embedding](https://arxiv.org/pdf/1802.04407v2.pdf) 。
+* 2.GCNModelARGA(src/arga)：对抗正则化图自编码，利用gae/vgae作为生成器；一个三层前馈网络作判别器。 [Adversarially Regularized Graph Autoencoder for Graph Embedding](https://arxiv.org/pdf/1802.04407v2.pdf) 。
 
     ![image](https://raw.githubusercontent.com/jiangnanboy/gcn_for_prediction_of_protein_interactions/master/image/arga.png)
+* 3.GATModelVAE(src/graph_att_gae)：基于图注意力的图卷积自编码和变分图卷积自编码(config中可配置使用自编码或变分自编码)，利用gae/vgae作为编码器，InnerProductDecoder作解码器。这是我在以上【1】方法的基础上加入了一层图注意力层，关于图注意力可见【Reference】中的【GRAPH ATTENTION NETWORKS】。
+* 4.GATModelGAN(src/graph_att_gan)：基于图注意力的对抗正则化图自编码，利用gae/vgae作为生成器；一个三层前馈网络作判别器，这是我在以上【2】方法的基础上加入了一层图注意力层，关于图注意力可见【Reference】中的【GRAPH ATTENTION NETWORKS】。
 
 #### Usage
 - 相关参数的配置config见每个模型文件夹中的config.cfg文件，训练和预测时会加载此文件。
@@ -117,7 +119,95 @@
     # 会返回原始的图邻接矩阵和经过模型编码后的hidden embedding经过内积解码的邻接矩阵，可以对这两个矩阵进行比对，得出link prediction.
     adj_orig, adj_rec = predict.predict()
     ```
+  
+  ##### 3.GATModelVAE(src/graph_att_gae)
+    (1).训练
+    ```
+    from src.graph_att_gae.train import Train
+    train = Train()
+    train.train_model('config.cfg')
+    ```
+    ```
+    Epoch: 0001 train_loss =  0.73325 val_roc_score =  0.72741 average_precision_score =  0.62188 time= 0.80873
+    Epoch: 0002 train_loss =  0.73332 val_roc_score =  0.86092 average_precision_score =  0.84305 time= 0.80357
+    Epoch: 0003 train_loss =  0.73340 val_roc_score =  0.87373 average_precision_score =  0.86307 time= 0.79868
+    Epoch: 0004 train_loss =  0.73317 val_roc_score =  0.87535 average_precision_score =  0.86470 time= 0.80704
+    Epoch: 0005 train_loss =  0.73351 val_roc_score =  0.87536 average_precision_score =  0.86470 time= 0.80163
+    Epoch: 0006 train_loss =  0.73311 val_roc_score =  0.87543 average_precision_score =  0.86479 time= 0.81234
+    Epoch: 0007 train_loss =  0.73357 val_roc_score =  0.87559 average_precision_score =  0.86492 time= 0.80755
+    Epoch: 0008 train_loss =  0.73312 val_roc_score =  0.87489 average_precision_score =  0.86442 time= 0.81295
+    Epoch: 0009 train_loss =  0.73326 val_roc_score =  0.87479 average_precision_score =  0.86425 time= 0.81095
+    Epoch: 0010 train_loss =  0.73342 val_roc_score =  0.87409 average_precision_score =  0.86374 time= 0.81146
+    Epoch: 0011 train_loss =  0.73347 val_roc_score =  0.87286 average_precision_score =  0.86265 time= 0.80884
+    Epoch: 0012 train_loss =  0.73341 val_roc_score =  0.87209 average_precision_score =  0.86150 time= 0.81265
+    Epoch: 0013 train_loss =  0.73355 val_roc_score =  0.87135 average_precision_score =  0.86060 time= 0.80919
+    Epoch: 0014 train_loss =  0.73330 val_roc_score =  0.87004 average_precision_score =  0.85823 time= 0.81394
+    Epoch: 0015 train_loss =  0.73322 val_roc_score =  0.86950 average_precision_score =  0.85719 time= 0.80923
+    Epoch: 0016 train_loss =  0.73338 val_roc_score =  0.86871 average_precision_score =  0.85600 time= 0.81212
+    Epoch: 0017 train_loss =  0.73346 val_roc_score =  0.86896 average_precision_score =  0.85637 time= 0.81340
+    Epoch: 0018 train_loss =  0.73346 val_roc_score =  0.86937 average_precision_score =  0.85592 time= 0.81007
+    Epoch: 0019 train_loss =  0.73339 val_roc_score =  0.87089 average_precision_score =  0.85818 time= 0.79646
+    Epoch: 0020 train_loss =  0.73311 val_roc_score =  0.87144 average_precision_score =  0.85820 time= 0.80058
+    
+    test roc score: 0.8714519347032031
+    test ap score: 0.8593487257170946
+    ```
+      
+    (2).预测
 
+    ```
+    from src.graph_att_gae.predict import Predict
+  
+    predict = Predict()
+    predict.load_model_adj('config_cfg')
+    # 会返回原始的图邻接矩阵和经过模型编码后的hidden embedding经过内积解码的邻接矩阵，可以对这两个矩阵进行比对，得出link prediction.
+    adj_orig, adj_rec = predict.predict()
+    ```
+  
+  ##### 4.GATModelGAN(src/graph_att_gan)
+    (1).训练
+    ```
+    from src.graph_att_gan.train import Train
+    train = Train()
+    train.train_model('config.cfg')
+    ```
+    ```
+    Epoch: 0001 train_loss =  2.19019 val_roc_score =  0.72951 average_precision_score =  0.62579 time= 0.82239
+    Epoch: 0002 train_loss =  2.18480 val_roc_score =  0.85762 average_precision_score =  0.84009 time= 0.80851
+    Epoch: 0003 train_loss =  2.17933 val_roc_score =  0.87056 average_precision_score =  0.86129 time= 0.80706
+    Epoch: 0004 train_loss =  2.17487 val_roc_score =  0.87241 average_precision_score =  0.86276 time= 0.80689
+    Epoch: 0005 train_loss =  2.16849 val_roc_score =  0.87377 average_precision_score =  0.86433 time= 0.82771
+    Epoch: 0006 train_loss =  2.16361 val_roc_score =  0.87430 average_precision_score =  0.86472 time= 0.80936
+    Epoch: 0007 train_loss =  2.15645 val_roc_score =  0.87491 average_precision_score =  0.86516 time= 0.80772
+    Epoch: 0008 train_loss =  2.15187 val_roc_score =  0.87483 average_precision_score =  0.86499 time= 0.80491
+    Epoch: 0009 train_loss =  2.14528 val_roc_score =  0.87543 average_precision_score =  0.86555 time= 0.80434
+    Epoch: 0010 train_loss =  2.13976 val_roc_score =  0.87557 average_precision_score =  0.86562 time= 0.81330
+    Epoch: 0011 train_loss =  2.13290 val_roc_score =  0.87565 average_precision_score =  0.86563 time= 0.80601
+    Epoch: 0012 train_loss =  2.12783 val_roc_score =  0.87552 average_precision_score =  0.86552 time= 0.80824
+    Epoch: 0013 train_loss =  2.12035 val_roc_score =  0.87602 average_precision_score =  0.86610 time= 0.80804
+    Epoch: 0014 train_loss =  2.11536 val_roc_score =  0.87639 average_precision_score =  0.86620 time= 0.80723
+    Epoch: 0015 train_loss =  2.11036 val_roc_score =  0.87596 average_precision_score =  0.86608 time= 0.80584
+    Epoch: 0016 train_loss =  2.10575 val_roc_score =  0.87614 average_precision_score =  0.86601 time= 0.80662
+    Epoch: 0017 train_loss =  2.10216 val_roc_score =  0.87622 average_precision_score =  0.86612 time= 0.80530
+    Epoch: 0018 train_loss =  2.09839 val_roc_score =  0.87625 average_precision_score =  0.86605 time= 0.81081
+    Epoch: 0019 train_loss =  2.09667 val_roc_score =  0.87594 average_precision_score =  0.86590 time= 0.80764
+    Epoch: 0020 train_loss =  2.09316 val_roc_score =  0.87595 average_precision_score =  0.86593 time= 0.80807
+    
+    test roc score: 0.8769472359794324
+    test ap score: 0.8697789753279398
+    ```
+      
+    (2).预测
+
+    ```
+    from src.graph_att_gan.predict import Predict
+  
+    predict = Predict()
+    predict.load_model_adj('config_cfg')
+    # 会返回原始的图邻接矩阵和经过模型编码后的hidden embedding经过内积解码的邻接矩阵，可以对这两个矩阵进行比对，得出link prediction.
+    adj_orig, adj_rec = predict.predict()
+    ```
+  
 ## Dataset
 
    数据来自酵母蛋白质相互作用[yeast](http://snap.stanford.edu/deepnetbio-ismb/ipynb/yeast.edgelist) 。
@@ -139,3 +229,4 @@
 * http://snap.stanford.edu/deepnetbio-ismb/ipynb/Graph+Convolutional+Prediction+of+Protein+Interactions+in+Yeast.html
 * [Adversarially Regularized Graph Autoencoder for Graph Embedding](https://arxiv.org/pdf/1802.04407v2.pdf)
 * https://github.com/pyg-team/pytorch_geometric
+* [GRAPH ATTENTION NETWORKS](https://arxiv.org/pdf/1710.10903.pdf)
