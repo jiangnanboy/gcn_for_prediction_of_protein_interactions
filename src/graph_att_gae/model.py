@@ -101,9 +101,8 @@ class InnerProductDecoder(nn.Module):
     def __init__(self, dropout):
         super(InnerProductDecoder, self).__init__()
         self.dropout = nn.Dropout(dropout)
-        self.sigmoid = nn.Sigmoid()
 
     def forward(self, z):
         z = self.dropout(z)
-        adj = self.sigmoid(torch.mm(z, z.t()))
+        adj = torch.mm(z, z.t())
         return adj
