@@ -1,26 +1,26 @@
 nohup: ignoring input
 create model ...
 start training...
-Epoch: 0001 train_loss =  2.17176 val_roc_score =  0.77090 average_precision_score =  0.69050 time= 0.81113
-Epoch: 0002 train_loss =  2.16173 val_roc_score =  0.84636 average_precision_score =  0.81340 time= 0.81458
-Epoch: 0003 train_loss =  2.14979 val_roc_score =  0.87660 average_precision_score =  0.86472 time= 0.80898
-Epoch: 0004 train_loss =  2.13698 val_roc_score =  0.87735 average_precision_score =  0.86534 time= 0.80995
-Epoch: 0005 train_loss =  2.12339 val_roc_score =  0.87765 average_precision_score =  0.86592 time= 0.80865
-Epoch: 0006 train_loss =  2.10753 val_roc_score =  0.87756 average_precision_score =  0.86571 time= 0.80748
-Epoch: 0007 train_loss =  2.08996 val_roc_score =  0.87806 average_precision_score =  0.86621 time= 0.80738
-Epoch: 0008 train_loss =  2.06920 val_roc_score =  0.87801 average_precision_score =  0.86623 time= 0.80744
-Epoch: 0009 train_loss =  2.04701 val_roc_score =  0.87795 average_precision_score =  0.86618 time= 0.80932
-Epoch: 0010 train_loss =  2.02241 val_roc_score =  0.87830 average_precision_score =  0.86643 time= 0.80722
-Epoch: 0011 train_loss =  1.99754 val_roc_score =  0.87807 average_precision_score =  0.86620 time= 0.80533
-Epoch: 0012 train_loss =  1.97255 val_roc_score =  0.87749 average_precision_score =  0.86586 time= 0.80859
-Epoch: 0013 train_loss =  1.94664 val_roc_score =  0.87607 average_precision_score =  0.86483 time= 0.80660
-Epoch: 0014 train_loss =  1.92208 val_roc_score =  0.87408 average_precision_score =  0.86320 time= 0.80300
-Epoch: 0015 train_loss =  1.89869 val_roc_score =  0.87290 average_precision_score =  0.86218 time= 0.80400
-Epoch: 0016 train_loss =  1.87584 val_roc_score =  0.87244 average_precision_score =  0.86186 time= 0.80392
-Epoch: 0017 train_loss =  1.85415 val_roc_score =  0.87554 average_precision_score =  0.86400 time= 0.80675
-Epoch: 0018 train_loss =  1.83373 val_roc_score =  0.87653 average_precision_score =  0.86473 time= 0.80762
-Epoch: 0019 train_loss =  1.81515 val_roc_score =  0.87718 average_precision_score =  0.86532 time= 0.80596
-Epoch: 0020 train_loss =  1.79975 val_roc_score =  0.87745 average_precision_score =  0.86551 time= 0.80889
+Epoch: 0001 train_loss =  2.08252 val_roc_score =  0.75422 average_precision_score =  0.66179 time= 0.80230
+Epoch: 0002 train_loss =  2.03940 val_roc_score =  0.86953 average_precision_score =  0.85636 time= 0.79571
+Epoch: 0003 train_loss =  2.00348 val_roc_score =  0.87872 average_precision_score =  0.86847 time= 0.79245
+Epoch: 0004 train_loss =  1.97120 val_roc_score =  0.87997 average_precision_score =  0.86995 time= 0.79640
+Epoch: 0005 train_loss =  1.93477 val_roc_score =  0.88017 average_precision_score =  0.87027 time= 0.79548
+Epoch: 0006 train_loss =  1.89215 val_roc_score =  0.88046 average_precision_score =  0.87038 time= 0.79972
+Epoch: 0007 train_loss =  1.84537 val_roc_score =  0.88072 average_precision_score =  0.87058 time= 0.79561
+Epoch: 0008 train_loss =  1.78754 val_roc_score =  0.88063 average_precision_score =  0.87049 time= 0.79802
+Epoch: 0009 train_loss =  1.72469 val_roc_score =  0.88053 average_precision_score =  0.87043 time= 0.79486
+Epoch: 0010 train_loss =  1.65402 val_roc_score =  0.88063 average_precision_score =  0.87049 time= 0.79423
+Epoch: 0011 train_loss =  1.57884 val_roc_score =  0.88052 average_precision_score =  0.87045 time= 0.79348
+Epoch: 0012 train_loss =  1.49870 val_roc_score =  0.88049 average_precision_score =  0.87046 time= 0.79649
+Epoch: 0013 train_loss =  1.42083 val_roc_score =  0.88056 average_precision_score =  0.87046 time= 0.79063
+Epoch: 0014 train_loss =  1.34764 val_roc_score =  0.88060 average_precision_score =  0.87056 time= 0.79889
+Epoch: 0015 train_loss =  1.27635 val_roc_score =  0.88038 average_precision_score =  0.87043 time= 0.79485
+Epoch: 0016 train_loss =  1.20521 val_roc_score =  0.88050 average_precision_score =  0.87058 time= 0.79927
+Epoch: 0017 train_loss =  1.13763 val_roc_score =  0.88035 average_precision_score =  0.87045 time= 0.79072
+Epoch: 0018 train_loss =  1.07326 val_roc_score =  0.88035 average_precision_score =  0.87049 time= 0.79284
+Epoch: 0019 train_loss =  1.01548 val_roc_score =  0.88023 average_precision_score =  0.87044 time= 0.78869
+Epoch: 0020 train_loss =  0.96069 val_roc_score =  0.88014 average_precision_score =  0.87037 time= 0.79441
 Optimization Finished!
-test roc score: 0.8797451083479302
-test ap score: 0.8681038618348471
+test roc score: 0.8798092171308727
+test ap score: 0.8700487009596252
