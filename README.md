@@ -7,6 +7,8 @@
 - [Intro](#Intro)
 - [Model](#Model)
 - [Dataset](#Dataset)
+- [Install](#install)
+- [Cite](#Cite)
 - [Reference](#reference)
 
 ## Intro
@@ -309,7 +311,31 @@
     YOR123C	YLR418C
     ......         ......
    ```
-    
+
+## Install
+* 安装：pip install GCN4LP
+* 下载源码：
+```
+git clone https://github.com/jiangnanboy/gcn_for_prediction_of_protein_interactions.git
+cd gcn_for_prediction_of_protein_interactions
+python setup.py install
+```
+
+
+通过以上两种方法的任何一种完成安装都可以。如果不想安装，可以下载[github源码包](https://github.com/jiangnanboy/gcn_for_prediction_of_protein_interactions/archive/refs/heads/main.zip)
+
+## Cite
+
+如果你在研究中使用了GCN4LP，请按如下格式引用：
+
+```latex
+@software{GCN4LP,
+  author = {Shi Yan},
+  title = {GCN4LP: gcn for prediction of protein interactions},
+  year = {2021},
+  url = {https://github.com/jiangnanboy/gcn_for_prediction_of_protein_interactions},
+}
+```    
 
 ## Reference
 
