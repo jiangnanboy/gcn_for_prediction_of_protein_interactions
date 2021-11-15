@@ -43,7 +43,7 @@ class GCNModelVAE(nn.Module):
         return self.gc2(hidden1, adj), self.gc3(hidden1, adj)
 
     def reparameterize(self, mu, logvar):
-        if self.vae_bool: # 使用图变分卷积
+        if self.vae_bool:
             std = torch.exp(logvar)
             eps = torch.randn_like(std)
             return eps.mul(std).add_(mu)  # 乘std加mu
@@ -62,9 +62,8 @@ class InnerProductDecoder(nn.Module):
     def __init__(self, dropout):
         super(InnerProductDecoder, self).__init__()
         self.dropout = nn.Dropout(dropout)
-        self.sigmoid = nn.Sigmoid()
 
     def forward(self, z):
         z = self.dropout(z)
-        adj = self.sigmoid(torch.mm(z, z.t()))
+        adj = torch.mm(z, z.t())
         return adj
